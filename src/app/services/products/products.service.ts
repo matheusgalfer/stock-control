@@ -1,3 +1,4 @@
+import { CreateProductRequest } from './../../../../../API/stock-api/src/models/interfaces/product/CreateProductRequest';
 import { ProductEvent } from 'src/app/models/enums/products/ProductEvent';
 import { DeleteProductAction } from './../../models/interfaces/products/event/DeleteProductAction';
 import { Injectable } from '@angular/core';
@@ -7,6 +8,7 @@ import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { GetAllProductsResponse } from './../../models/interfaces/products/response/GetAllProductsResponse';
 import { DeleteProductResponse } from 'src/app/models/interfaces/products/response/DeleteProductResponse';
+import { CreateProductResponse } from 'src/app/models/interfaces/products/response/CreateProductResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +28,7 @@ export class ProductsService {
     private cookie: CookieService,
   ) { }
 
-  GetAllProducts(): Observable<Array<GetAllProductsResponse>> {
+  getAllProducts(): Observable<Array<GetAllProductsResponse>> {
     return this.http.get<Array<GetAllProductsResponse>>(
       `${this.API_URL}/products`,
       this.httpOptions
@@ -45,5 +47,13 @@ export class ProductsService {
         },
       }
     );
+  }
+
+  createProduct(resquestDatas: CreateProductRequest): Observable<CreateProductResponse> {
+    return this.http.post<CreateProductResponse>(
+      `${this.API_URL}/product`,
+      resquestDatas,
+      this.httpOptions
+    )
   }
 }
