@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 
 import { MessageService, ConfirmationService } from 'primeng/api';
-import { DialogService,DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { ProductsDataTransferService } from './../../../../shared/services/products/products-data-transfer.service';
 import { ProductsService } from './../../../../services/products/products.service';
@@ -28,7 +28,7 @@ export class ProductsHomeComponent implements OnInit, OnDestroy {
     private router: Router,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
   ) {}
 
   ngOnInit(): void {
@@ -99,7 +99,7 @@ export class ProductsHomeComponent implements OnInit, OnDestroy {
     if (event) {
       this.confirmationService.confirm({
         message: `Confirmar a exclusão do produto: ${event?.productName}?`,
-        header: 'Corfirmação de exclusão',
+        header: 'Confirmação de exclusão',
         icon: 'pi pi-exclamation-triangle',
         acceptLabel: 'Sim',
         rejectLabel: 'Não',
