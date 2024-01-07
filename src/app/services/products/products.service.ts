@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { GetAllProductsResponse } from './../../models/interfaces/products/response/GetAllProductsResponse';
 import { DeleteProductResponse } from 'src/app/models/interfaces/products/response/DeleteProductResponse';
 import { CreateProductResponse } from 'src/app/models/interfaces/products/response/CreateProductResponse';
+import { EditProductRequest } from 'src/app/models/interfaces/products/request/editProductRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -55,5 +56,13 @@ export class ProductsService {
       resquestDatas,
       this.httpOptions
     )
+  }
+
+  editProduct(requestDatas: EditProductRequest): Observable<void>  {
+    return this.http.put<void>(
+      `${this.API_URL}/product/edit`,
+      requestDatas,
+      this.httpOptions
+    );
   }
 }
