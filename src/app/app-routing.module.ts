@@ -1,3 +1,4 @@
+import { CategoriesModule } from './modules/categories/categories.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './modules/home/home.component';
@@ -26,6 +27,14 @@ const routes: Routes = [
     loadChildren: () => import('./modules/products/products.module')
     .then(
       (m) => m.ProductsModule
+    ),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'categories',
+    loadChildren: () => import('./modules/categories/categories.module')
+    .then(
+      (m) => m.CategoriesModule
     ),
     canActivate: [AuthGuard]
   },
